@@ -1,0 +1,32 @@
+[tools]
+go = "1.27"
+lefthook = "latest"
+golangci-lint = "latest"
+
+[tasks.fmt]
+description = "Format Go source files"
+run = "gofmt -l -w ."
+
+[tasks.vet]
+description = "Run go vet"
+run = "go vet ./..."
+
+[tasks.lint]
+description = "Run golangci-lint"
+run = "golangci-lint run ./..."
+
+[tasks.test]
+description = "Run go test"
+run = "go test ./..."
+
+[tasks.build]
+description = "Build all packages"
+run = "go build -o bin/ ./..."
+
+[tasks.tidy]
+description = "Tidy go.mod/go.sum"
+run = "go mod tidy"
+
+[tasks."hooks:install"]
+description = "Install git hooks via lefthook"
+run = "lefthook install"

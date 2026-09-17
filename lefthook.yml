@@ -1,0 +1,30 @@
+pre-commit:
+  parallel: true
+  commands:
+    secrets:
+      run: git secrets --pre_commit_hook --
+    fmt:
+      glob: "*.go"
+      run: gofmt -l {staged_files}
+      fail_text: "gofmt failed: run `mise run fmt` and re-stage"
+    vet:
+      glob: "*.go"
+      run: go vet ./...
+    lint:
+      glob: "*.go"
+      run: golangci-lint run ./...
+
+commit-msg:
+  commands:
+    secrets:
+      run: git secrets --commit_msg_hook -- {1}
+
+prepare-commit-msg:
+  commands:
+    secrets:
+      run: git secrets --prepare_commit_msg_hook -- {1} {2} {3}
+
+pre-push:
+  commands:
+    test:
+      run: go test ./...
