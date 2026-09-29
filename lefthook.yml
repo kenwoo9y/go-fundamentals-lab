@@ -11,16 +11,6 @@ pre-commit:
       glob: "*.go"
       run: golangci-lint run ./...
 
-commit-msg:
-  commands:
-    secrets:
-      run: git secrets --commit_msg_hook -- {1}
-
-prepare-commit-msg:
-  commands:
-    secrets:
-      run: git secrets --prepare_commit_msg_hook -- {1} {2} {3}
-
 pre-push:
   commands:
     test:
