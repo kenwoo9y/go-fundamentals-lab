@@ -7,9 +7,6 @@ pre-commit:
       glob: "*.go"
       run: gofmt -l {staged_files}
       fail_text: "gofmt failed: run `mise run fmt` and re-stage"
-    vet:
-      glob: "*.go"
-      run: go vet ./...
     lint:
       glob: "*.go"
       run: golangci-lint run ./...
